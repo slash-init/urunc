@@ -377,6 +377,7 @@ function main() {
             configure_cri_runtime "$runtime"
             kubectl label node "$NODE_NAME" --overwrite urunc.io/urunc-runtime=true
             echo "urunc-deploy completed successfully"
+            sleep infinity
         ;;
         cleanup)
             if [[ "$runtime" =~ ^(k3s|k3s-agent|rke2-agent|rke2-server)$ ]]; then
@@ -401,7 +402,6 @@ function main() {
             die "invalid arguments"
         ;;
     esac
-    sleep infinity
 }
 
 main "$@"
