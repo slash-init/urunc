@@ -25,6 +25,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"sync"
 	"syscall"
@@ -541,6 +542,9 @@ func (u *Unikontainer) buildMonitorSpec(rootfsParams types.RootfsParams, monRes 
 		BlkDevName: u.State.Annotations[annotBlkDev],
 		Rootfs:     rootfsParams,
 		Block:      monRes.BlockArgs,
+	}
+	if dnsClientValue := u.State.Annotations[annotDNSClient]; dnsClientValue != "" {
+		guest.DNSClient, _ = strconv.ParseBool(dnsClientValue)
 	}
 
 	vmmArgs.Sharedfs = monRes.Sharedfs
