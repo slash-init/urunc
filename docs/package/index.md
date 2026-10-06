@@ -72,7 +72,8 @@ Except of the above, `urunc` accepts the following optional annotations:
   (either as a block device or through shared-fs).
 - `com.urunc.unikernel.advertiseDNS`: A boolean value that if it is `true`,
   passes the DNS server obtained from the container's `/etc/resolv.conf` to
-  the guest. If it is absent or `false`, no DNS server is passed to the guest.
+  the guest. For now, this opt-in applies to Mirage; other guest types still
+  receive DNS from `resolv.conf` without the annotation.
 
 Due to the fact that [Docker](https://www.docker.com/) and some high-level
 container runtimes do not pass the image annotations to the underlying container
